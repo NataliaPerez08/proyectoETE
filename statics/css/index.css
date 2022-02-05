@@ -1,0 +1,39 @@
+html{
+	background-color: gainsboro;
+}
+  header{
+	background-color: #067d96;
+	display: flex;
+	font-size: 2em;
+  }
+  
+  nav{
+	background-color: #96ae7c;
+	display: flex;
+	color: white;
+	height: auto;
+	justify-content: center;
+	margin-right: auto;
+	margin-left: auto;
+  }
+  ul{
+	  list-style-type: none;
+	  margin: 0;
+	  padding: 0;
+	  overflow: hidden;
+  }
+  li{
+	  display: inline;
+	  float: left;
+	  border-left: 1px solid snow;
+	  border-right: 1px solid snow;
+  }
+
+  li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+  
