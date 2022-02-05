@@ -1,0 +1,12 @@
+CREATE TABLE Empleado(
+ID INT(10) AUTO_INCREMENT PRIMARY KEY,
+Nombres VARCHAR(40),
+Apellidos VARCHAR(40),
+CorreoE VARCHAR(20),
+Telefono VARCHAR(10),
+Salario FLOAT,
+Contraseña VARCHAR(20),
+Cargo TEXT);
+
+
+
