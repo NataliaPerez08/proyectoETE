@@ -22,5 +22,6 @@
         $usr=$_POST['usr'];
         echo "Tu nombre es: ".$usr;
     }
+    $conn->close();
 
 ?>

@@ -5,7 +5,8 @@ function clic_div(event) {
     var frm = document.createElement("form");
     cont.appendChild(frm);
     frm.method="POST"
-    frm.action = "./dynamics/php/index.php"
+    //frm.action = "./dynamics/php/index.php"
+    frm.action = "./templates/empleado.html"
 
     frm.append("Correo electronico")
   
