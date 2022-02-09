@@ -1,36 +1,26 @@
-var cont = document.getElementById("content")
-
-function clic_div(event) {
-    cont.innerHTML ="<h1>Empleado</h1> <br> <h2>Iniciar Sesión</h2>"
-    var frm = document.createElement("form");
-    cont.appendChild(frm);
-    frm.method="POST"
-    //frm.action = "./dynamics/php/index.php"
-    frm.action = "./templates/empleado.html"
-
-    frm.append("Correo electronico")
-  
-    var usr = document.createElement("input")
-    usr.type = "text"
-    usr.name = "usr"
-    frm.appendChild(usr)
-
-    frm.append("Contraseña")
-    var pass = document.createElement("input")
-    pass.type = "password"
-    pass.name = "pass"
-    frm.appendChild(pass)
-
-    var sb = document.createElement("button")
-    sb.name = "submit"
-    frm.appendChild(sb)
-    sb.onclick = enviar
-
-
-}
-function enviar(frm){
-    frm.submit()
+function loginE(event) {
+    console.log("iam")
+    if ($("#loginDiv").length === 0){
+        $content = $("#content").append("<h1>Empleado</h1> <br> <h2>Iniciar Sesión</h2>");
+        
+        $loginDiv = $('<div id="loginDiv"></div>');
+        $content.append($loginDiv);
+        $form = $("<form></form>", {action:"./templates/empleado.html", method:'POST',id:"form"});
+        $loginDiv.append($form);
+    
+        $form.append("Correo electronico");
+        $form.append('<input type="text" name="usr">');
+    
+    
+        $form.append("Contraseña")
+        $form.append('<input type="password" name="pass">');
+    
+        $sendBtton = $('<input type="submit" value="submit">');
+        $form.append($sendBtton);
+    }else{
+        console.log("Ya existe")
+    }
 }
 
-var botonE =document.getElementById("emp")
-botonE.onclick = clic_div
+
+$("#emp").click(loginE)

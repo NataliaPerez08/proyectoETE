@@ -9,4 +9,7 @@ Contraseña VARCHAR(20),
 Cargo TEXT);
 
 
+INSERT INTO Empleado(Nombres, Apellidos, CorreoE, Telefono, Salario, Contraseña, Cargo) VALUES ('John', 'Doe', 'john@example.com')";
+
+
 
