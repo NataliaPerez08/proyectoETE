@@ -20,8 +20,10 @@
         echo "Tu nombre es: ".$usr."<br>";
      
         
-        $sql = "SELECT * FROM Empleado WHERE ID=".$usr;
-        //$sql = 'SELECT Telefono FROM Empleado WHERE Nombre="Abi"';
+        //$sql = 'SELECT * FROM Empleado WHERE ID='.$usr;
+        //$sql = "SELECT Telefono FROM Empleado WHERE CorreoE='ny@gmail.com'";
+        
+        $sql = "SELECT Telefono FROM Empleado WHERE CorreoE ='". $usr. "'";
         //$usr = "Abi";
         
         $result = mysqli_query($conn,$sql);
@@ -29,11 +31,12 @@
             $row = mysqli_fetch_array($result);
             echo $row[0];
         }else{
-            echo "Nos se ha encontrado";
+            echo "La consulta no es valida";
         }
         //$consulta = "SELECT no_cuenta FROM usuario WHERE no_cuenta=".$cuenta;
         //$respuesta = mysqli_query($conexion, $consulta);
         //if(!$row = mysqli_fetch_array($respuesta)){
+        //$query_getShows = "SELECT * FROM toho_shows WHERE toho_shows.show ='". $show. "'";
         
     }
 

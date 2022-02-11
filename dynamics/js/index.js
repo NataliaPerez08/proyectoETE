@@ -10,8 +10,8 @@ function loginE(event) {
         $loginDiv.append($form);
     
         $form.append("Correo electronico");
+        //$form.append('<input type="number" name="usr">');
         $form.append('<input type="email" name="usr">');
-    
     
         $form.append("Contraseña")
         $form.append('<input type="password" name="pass">');
