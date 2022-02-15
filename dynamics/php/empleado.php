@@ -31,35 +31,29 @@
         $pass = $_POST['pass'];
         $charge = $_POST['charge'];
 
-        echo "Tu nombre es: ".$name;
-        
-        $hashpass = password_hash($pass,PASSWORD_DEFAULT,[15]);
-        echo "\n".$hashpass;
-
-        //$sql = "INSERT INTO Empleado (Nombres, Apellidos, CorreoE, Telefono, Salario, Contraseña, Cargo) VALUES ($name, $lastname, $email, $telephone, $salary, $pass, $charge)";
-
-        $sql = sprintf("INSERT INTO Empleado (Nombres, Apellidos, CorreoE, Telefono, Salario, Contraseña, Cargo) VALUES ('%s','%s','%s','%u','%f','%s','%s')",
-                      $name,
-                      $lastname,
-                      $email,
-                      $telephone,
-                      $salary,
-                      $hashpass,
-                      $charge
-                    );
-
-        if (mysqli_query($conn, $sql)) {
+        $sql = "SELECT * FROM Empleado WHERE CorreoE ='". $email. "'";
+        $result = mysqli_query($conn,$sql);
+        if ($row = mysqli_fetch_array($result)){
+          echo "Ese correo ya fue registrado";
+        }else{
+          $hashpass = password_hash($pass,PASSWORD_DEFAULT,[15]);
+          $sql = sprintf("INSERT INTO Empleado (Nombres, Apellidos, CorreoE, Telefono, Salario, Contraseña, Cargo) VALUES ('%s','%s','%s','%u','%f','%s','%s')",
+                        $name,
+                        $lastname,
+                        $email,
+                        $telephone,
+                        $salary,
+                        $hashpass,
+                        $charge
+                      );
+  
+          if (mysqli_query($conn, $sql)) {
             echo "New record created successfully";
-          } else {
-            echo "<br>Error: " . $sql . "<br>" . mysqli_error($conn);
-          }
-
-
-        $ver = password_verify($pass,$hashpass);
-        echo "<br> ver:".$ver;
-
-
-
+              header('Location: ../../templates/empleado.html');
+            } else {
+              echo "<br>Error: " . $sql . "<br>" . mysqli_error($conn);
+            }
+        }  
     }
     $conn->close();
 
