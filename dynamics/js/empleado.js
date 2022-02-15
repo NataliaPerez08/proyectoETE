@@ -1,18 +1,4 @@
-$.ajax({
-    type: "POST",
-    url:"../dynamics/php/index.php",
-    data: $("#form").serialize(),
-    success: function(data){
-        //console.log("idn: "+data);
-        $("#prm").html(data);
-    }
-});
-
-
-
 function register(){
-    console.log("dsd")
-
     if ($("#signInDiv").length === 0){
         $signInDiv = $('<div id="signInDiv"></div>');
         $("#frm").append($signInDiv)
@@ -47,5 +33,35 @@ function register(){
         console.log("Ya existe")
     }
 }
+function registerClient(){
+    console.log("cliente");
+    if ($("#reClient").length === 0){
+        $reClient = $('<div id="reClient"></div>');
+        $("#frm1").append($reClient)
+        // ../dynamics/php/empleado.php"
+        $form = $("<form></form>", {action:"../dynamics/php/empleado.php", method:'POST'});
+        $form.append('<label>Nombre(s):</label>');
+        $form.append('<input type="text" name="Cname">');
+
+        $form.append('<label>Apellidos:</label>');
+        $form.append('<input type="text" name="Clastname">');
+
+        $form.append('<label>Correo Electronico:</label>');
+        $form.append('<input type="email" name="Cemail">');
+
+        $form.append('<label>Telefono:</label>')
+        $form.append('<input type="tel" name="Ctelephone">');
+
+        $form.append('<label>Veterinario</label>')
+        $form.append('<input type="text" name="vet">');
+
+        $form.append('<input type="submit" value="submit">')
+        
+        $reClient.append($form);
+    }else{
+        console.log("Ya existe")
+    }
+}
 
 $("#res").click(register);
+$("#res1").click(registerClient);
