@@ -7,9 +7,13 @@ function registerEmployee(){
 }
 
 function registerJob(){
-    window.location.href = "../dynamics/php/puesto.php";
+    window.location.href = "../dynamics/php/crearpuesto.php";
+}
+function modJob(){
+    window.location.href = "../dynamics/php/modificarPuesto.php";
 }
 
 $("#res").click(registerEmployee);
 $("#res1").click(registerClient);
 $("#res3").click(registerJob);
+$("#res4").click(modJob);

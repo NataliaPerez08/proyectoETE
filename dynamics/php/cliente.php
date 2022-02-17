@@ -28,11 +28,12 @@
             
             echo '<label>Veterinario:</label>';
             echo "<select name='vet'";
-                $sql = "SELECT ID,Nombres,Apellidos FROM Empleado";
+                $id=1;
+                $sql = 'SELECT ID,Nombres,Apellidos FROM Empleado WHERE Cargo='.$id;
                 $result = mysqli_query($conn, $sql);
-                while ($row = mysqli_fetch_array($result)) {
+                do{
                     echo "    <option value='".$row[0]."'>".utf8_encode($row[1])." ".utf8_encode($row[2])."</option>";
-                }
+                }while ($row = mysqli_fetch_array($result));
                 echo "    </select><br><br>";
             echo "<input type='submit' value='submit'>";
             echo  "</form>";
