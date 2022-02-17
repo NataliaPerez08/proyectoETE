@@ -5,11 +5,23 @@ Apellidos VARCHAR(40),
 CorreoE VARCHAR(20),
 Telefono VARCHAR(10),
 Salario FLOAT,
-Contraseña VARCHAR(20),
+Contraseña TEXT,
 Cargo TEXT);
 
 
 INSERT INTO Empleado(Nombres, Apellidos, CorreoE, Telefono, Salario, Contraseña, Cargo) VALUES ('John', 'Doe', 'john@example.com')";
 
 
+CREATE TABLE Cliente(
+ID INT(10) AUTO_INCREMENT PRIMARY KEY,
+Nombres VARCHAR(40),
+Apellidos VARCHAR(40),
+CorreoE VARCHAR(20),
+Telefono VARCHAR(10),
+Veterinario INT(10),
+Mascotas TEXT);
 
+CREATE TABLE Puesto(
+ID INT(10) AUTO_INCREMENT PRIMARY KEY,
+Nombre VARCHAR(40),
+Descripcion TEXT);
