@@ -29,13 +29,13 @@
 
       echo '<label>Cargo:</label>';
       echo "<select name='charge'";
-                $id=1;
-                $sql = "SELECT ID,Nombre FROM Puesto";
-                $result = mysqli_query($conn, $sql);
-                do{
-                    echo "    <option value='".$row[0]."'>".utf8_encode($row[1])."</option>";
-                }while ($row = mysqli_fetch_array($result));
-                echo "    </select><br><br>";
+      $id=1;
+      $sql = "SELECT ID,Nombre FROM Puesto";
+      $result = mysqli_query($conn, $sql);
+      do{
+          echo "    <option value='".$row[0]."'>".utf8_encode($row[1])."</option>";
+      }while ($row = mysqli_fetch_array($result));
+      echo "    </select><br><br>";
 
       echo '<input type="submit" value="submit"></form>';
       // Registro Empleado

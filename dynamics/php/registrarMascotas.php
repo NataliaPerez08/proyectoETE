@@ -1,0 +1,73 @@
+<?php
+    session_start();
+    if(isset($_SESSION['id'])){
+      $servername = "localhost";
+      $username = "root";
+      $password = "";
+      $dbname = "clinicaVeterinaria";
+      $conn = new mysqli($servername, $username, $password,$dbname);
+      if ($conn->connect_error) {      die("Connection failed: " . $conn->connect_error);      }
+      echo "<form action='registrarMascotas.php' method='POST'>";
+      
+      echo '<label>Nombre:</label>';
+      echo '<input type="text" name="name">';
+
+      echo '<label>Edad</label>';
+      echo '<input type="number" name="age">';
+
+      echo '<label>Tipo:</label>';
+      echo '<input type="text" name="type">';
+
+      echo '<label>Diagnostico:</label>';
+      echo '<input type="textarea" name="diag">';
+
+      echo '<label>Dueño:</label>';
+      echo "<select name='owner'";
+                $id=1;
+                $sql = "SELECT ID,Nombres,Apellidos FROM Cliente";
+                $result = mysqli_query($conn, $sql);
+                do{
+                    echo "    <option value='".$row[0]."'>".utf8_encode($row[1])." 
+                    ".utf8_encode($row[2])."</option>";
+                }while ($row = mysqli_fetch_array($result));
+                echo "    </select><br><br>";
+
+      echo '<input type="submit" value="submit"></form>';
+      // Registro Empleado
+      $n = isset($_POST['name']);
+      $a = isset($_POST['age']);
+      $t = isset($_POST['type']);
+      $d = isset($_POST['diag']);
+      $o = isset($_POST['owner']);
+ 
+      if ($n && $a && $t && $d && $o){
+        $name = $_POST['name'];
+        $age = $_POST['age'];
+        $type = $_POST['type'];
+        $diag = $_POST['diag'];
+        $owner = $_POST['owner'];
+
+        $n = $name != ""; 
+        $a = $age > 0;
+        $t = $type != "";
+        $d = $diag != ""; 
+
+        if ($n && $a && $t && $d && $o) {
+          $sql = sprintf("INSERT INTO Mascota (Propietario, Nombre, Edad, Tipo, Diagnostico) VALUES ('%d','%s','%d','%s','%s')",
+                        $owner,
+                        $name,
+                        $age,
+                        $type,
+                        $diag,
+                        $owner);
+  
+          if (mysqli_query($conn, $sql)) {
+              echo "Se ha registrado exitosamente";
+            } else {echo "<br>Error: " . $sql . "<br>" . mysqli_error($conn); }
+        }else{ echo "Verifica la entrada";}
+      }
+      echo "</form>  <a href='../../templates/empleado.html'>Regresar</a>";
+      $conn->close();
+    }else{ echo "<a href='../../'>Inicia sesión</a>";}
+    
+?>

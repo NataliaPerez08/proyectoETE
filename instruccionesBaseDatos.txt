@@ -21,7 +21,23 @@ Telefono VARCHAR(10),
 Veterinario INT(10),
 Mascotas TEXT);
 
+CREATE TABLE Mascota(
+ID INT(10) AUTO_INCREMENT PRIMARY KEY,
+Propietario VARCHAR(40),
+Nombre VARCHAR(40),
+Edad INT(7),
+Tipo VARCHAR(40),
+Diagnostico TEXT,
+Procedimiento TEXT);
+
 CREATE TABLE Puesto(
 ID INT(10) AUTO_INCREMENT PRIMARY KEY,
 Nombre VARCHAR(40),
 Descripcion TEXT);
+
+CREATE TABLE Procedimiento(
+ID INT(10) AUTO_INCREMENT PRIMARY KEY,
+Nombre TEXT,
+Descripcion TEXT,
+Fecha DATE,
+Costo DECIMAL);
