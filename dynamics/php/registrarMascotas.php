@@ -18,6 +18,16 @@
       echo '<label>Tipo:</label>';
       echo '<input type="text" name="type">';
 
+      echo '<label>Veterinario:</label>';
+      echo "<select name='vet'";
+          $id=1;
+          $sql = 'SELECT ID,Nombres,Apellidos FROM Empleado WHERE Cargo='.$id;
+          $result = mysqli_query($conn, $sql);
+          do{
+              echo "    <option value='".$row[0]."'>".utf8_encode($row[1])." ".utf8_encode($row[2])."</option>";
+          }while($row = mysqli_fetch_array($result));
+          echo "    </select><br><br>";
+
       echo '<label>Diagnostico:</label>';
       echo '<input type="textarea" name="diag">';
 
@@ -39,25 +49,29 @@
       $t = isset($_POST['type']);
       $d = isset($_POST['diag']);
       $o = isset($_POST['owner']);
+      $v = isset($_POST['vet']);
  
-      if ($n && $a && $t && $d && $o){
+      if ($n && $a && $t && $d && $o && $v){
         $name = $_POST['name'];
         $age = $_POST['age'];
         $type = $_POST['type'];
         $diag = $_POST['diag'];
         $owner = $_POST['owner'];
+        $vet = $_POST['vet'];
 
         $n = $name != ""; 
         $a = $age > 0;
         $t = $type != "";
         $d = $diag != ""; 
+        $v = $vet != "";
 
-        if ($n && $a && $t && $d && $o) {
-          $sql = sprintf("INSERT INTO Mascota (Propietario, Nombre, Edad, Tipo, Diagnostico) VALUES ('%d','%s','%d','%s','%s')",
+        if ($n && $a && $t && $d && $o && $v) {
+          $sql = sprintf("INSERT INTO Mascota (Propietario, Nombre, Edad, Tipo, Veteriario, Diagnostico) VALUES ('%d','%s','%d','%s','%s','%s')",
                         $owner,
                         $name,
                         $age,
                         $type,
+                        $vet,
                         $diag,
                         $owner);
   

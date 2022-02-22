@@ -26,15 +26,6 @@
             <label>Telefono:</label>
             <input type='tel' name='telephone'>";
             
-            echo '<label>Veterinario:</label>';
-            echo "<select name='vet'";
-                $id=1;
-                $sql = 'SELECT ID,Nombres,Apellidos FROM Empleado WHERE Cargo='.$id;
-                $result = mysqli_query($conn, $sql);
-                do{
-                    echo "    <option value='".$row[0]."'>".utf8_encode($row[1])." ".utf8_encode($row[2])."</option>";
-                }while($row = mysqli_fetch_array($result));
-                echo "    </select><br><br>";
             echo "<input type='submit' value='submit'>";
             echo  "</form>";
 
@@ -43,31 +34,27 @@
             $ln = isset($_POST['lastname']);
             $em = isset($_POST['email']);
             $tp = isset($_POST['telephone']);
-            $vt = isset($_POST['vet']);
-            if($n && $ln && $em && $tp && $vt){
+            if($n && $ln && $em && $tp){
                 $name=$_POST['name'];
                 $lastname=$_POST['lastname'];
                 $email = $_POST['email'];
                 $telephone = $_POST['telephone'];
-                $vet = $_POST['vet'];
 
                 $n = $name != "";
                 $ln = $lastname != "";
                 $em = $email != "";
                 $tp = $telephone != "";
-                $vt = $vet != "";
-                if($n && $ln && $em && $tp && $vt){
+                if($n && $ln && $em && $tp){
                     $sql = "SELECT * FROM Cliente WHERE CorreoE ='". $email. "'";
                     $result = mysqli_query($conn,$sql);
                     if ($row = mysqli_fetch_array($result)){
                     echo "Ese correo ya fue registrado";
                     }else{
-                    $sql = sprintf("INSERT INTO Cliente (Nombres, Apellidos, CorreoE, Telefono, Veterinario) VALUES ('%s','%s','%s','%s','%s')",
+                    $sql = sprintf("INSERT INTO Cliente (Nombres, Apellidos, CorreoE, Telefono) VALUES ('%s','%s','%s','%s')",
                                     $name,
                                     $lastname,
                                     $email,
                                     $telephone,
-                                    $vet,
                                 );
             
                     if (mysqli_query($conn, $sql)) {
