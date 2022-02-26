@@ -14,19 +14,14 @@ function modJob(){
 }
 
 function modClient(){
-    console.log("presiona");
-    $.ajax({
-    type: "POST",
-        url: '../dynamics/php/empleado.php',
-        data: $(this).serialize(),
-        success: function(response){
-            //alert('Funciona'+response);
-            $("#frm6").append(response);
-       }
-    });
+    window.location.href = "../dynamics/php/modCliente.php";
 }
 function registerMascot() {
     window.location.href = "../dynamics/php/registrarMascotas.php";
+}
+
+function registerMascot() {
+    window.location.href = "../dynamics/php/modmascota.php";
 }
 
 $("#res").click(registerEmployee);
@@ -37,3 +32,4 @@ $("#res4").click(modJob);
 
 
 $("#res6").click(modClient);
+$("#res7").click(modMascot);
