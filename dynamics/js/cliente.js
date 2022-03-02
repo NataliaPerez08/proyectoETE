@@ -75,11 +75,11 @@ function modEmail(){
 }
 
 function modMascot(){
-    alert("mod Mascot");
+    window.location.href = "../php/modMascota.php";
 }
 
 function registerMascot() {
-    window.location.href = "../php/registrarMascotas.php";
+    window.location.href = "../php/registrarMascota.php";
 }
 
 $("#res").click(modName);

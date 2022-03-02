@@ -15,18 +15,31 @@ if(isset($_SESSION['id'])){
             header("Location: modMascota.php");
         }
         if(isset($_SESSION['idPet'])){
-            if(isset($_POST['terminar'])){unset($_SESSION['idClient']); header('Location: ../../templates/empleado.html');}
+            if(isset($_POST['terminar'])){unset($_SESSION['idPet']); header('Location: ../../templates/empleado.html');}
             $idPet = $_SESSION['idPet'];
-            $sql = "SELECT Nombres,Apellidos FROM Cliente WHERE ID ='". $idC. "'";
+            $sql = "SELECT Nombres,Apellidos FROM Cliente WHERE ID ='".$_SESSION['idClient']. "'";
             $result = mysqli_query($conn, $sql);
             if($result){
                 if($row = mysqli_fetch_array($result)){
-                    echo "<h2>Se ha seleccionado del cliente: ".utf8_encode($row[1])." ".utf8_encode($row[2])."</h2>";
+                    echo "<h2>Se ha seleccionado del cliente ".utf8_encode($row[0])." ".utf8_encode($row[1]);
                 }
                 $sqlP = "SELECT * FROM Mascota WHERE ID ='". $idPet. "'";
                 $query = mysqli_query($conn, $sqlP);
-                if($row = mysqli_fetch_array($result)){
-                    echo " las mascota".utf8_encode($row[0]);
+                if($row = mysqli_fetch_array($query)){
+                    echo "<br> la mascota ".utf8_encode($row[2])."</h2>";
+                    echo "<h4>Edad: ".utf8_encode($row[3])." <br>Tipo: ".utf8_encode($row[4]);
+                    echo "<br>Veterinario: ".utf8_encode($row[5])." <br>Diagnostico: ".utf8_encode($row[6]);
+                    echo "<br>Procedimientos: ";
+                    $tmp = explode(",", $row[7]);
+                    for ($i=0; $i < count($tmp)-1 ; $i++) { 
+                        $sqlP = "SELECT * FROM Procedimiento WHERE ID ='". $tmp[$i]. "'";
+                        $query = mysqli_query($conn, $sqlP);
+                        if($row = mysqli_fetch_array($query)){
+                        echo $row[1].", ";
+                        }
+                    }
+                    echo "</h4><br>";
+
                     echo "<body>
                         <div id='res'>Modificar nombre</div>
                         <div id='frm'></div>
@@ -71,22 +84,25 @@ if(isset($_SESSION['id'])){
                     }
                 }
             } 
-            echo "<form action='modCliente.php' method='POST'><button name='terminar'>Terminar</button></form>";
+            echo "<form action='modMascota.php' method='POST'><button name='terminar'>Terminar</button></form>";
             
         }else{
-            echo "<h2>Seleccionar mascota a modificar</h2>
-            <form action='modMascota.php' method='POST'>
+            $sql = "SELECT Nombres,Apellidos FROM Cliente WHERE ID ='".$_SESSION['idClient']. "'";
+            $result = mysqli_query($conn, $sql);
+            $row = mysqli_fetch_array($result);
+            echo "<h2>Seleccionar mascota a modificar del cliente ".utf8_encode($row[0])." ".utf8_encode($row[1])."</h2>";
+            echo "<form action='modMascota.php' method='POST'>
             <label>Selecciona Mascota:</label>";
-            echo "<select name='client'";
-            $sql = "SELECT ID,Nombre,Propietario FROM Mascota";
+            echo "<select name='pet'";
+            $sql = "SELECT ID,Nombre FROM Mascota WHERE Propietario ='".$_SESSION['idClient']. "'";
             $result = mysqli_query($conn, $sql);
             do{
-                echo "<option value='".$row[0]."'>Nombre:".utf8_encode($row[1])." Propietario:".utf8_encode($row[2])."</option>";
+                echo "<option value='".$row[0]."'>".utf8_encode($row[1])."</option>";
             }while ($row = mysqli_fetch_array($result));
             echo "    </select><br><br>";
             echo "<input type='submit' name='enviar'></form>";
         }
-    }else{ echo "<a href='modCliente.php'>Selecciona Cliente Primero</a>"}  
+    }else{ echo "<a href='modCliente.php'>Selecciona Cliente Primero</a>";}  
 }else{
     echo "<a href='../../'>Inicia sesión</a>";
 }

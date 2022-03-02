@@ -32,8 +32,9 @@
         echo '<label>Diagnostico:</label>';
         echo '<input type="textarea" name="diag">';
 
-        echo '<label>Dueño:</label>';
-        echo "<input type='hidden' value='".$id."'>";
+        //echo '<label>Dueño:</label>';
+        echo "<input type='hidden' name='owner' value='".$_SESSION['idClient']."'>";
+        echo $_SESSION['idClient'];
 
         echo '<input type="submit" value="submit"></form>';
         // Registro Empleado
@@ -80,6 +81,6 @@
         }
         echo "</form>  <a href='../../templates/empleado.html'>Regresar</a>";
         $conn->close();
-      }else{ echo "<a href='modCliente.php'>Seleccionar cliente</a>"}
+      }else{ echo "<a href='modCliente.php'>Seleccionar cliente</a>";}
     }else{ echo "<a href='../../'>Inicia sesión</a>";}
 ?>

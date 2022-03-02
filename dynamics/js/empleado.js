@@ -16,20 +16,21 @@ function modJob(){
 function modClient(){
     window.location.href = "../dynamics/php/modCliente.php";
 }
-function registerMascot() {
-    window.location.href = "../dynamics/php/registrarMascotas.php";
+
+function registerPet() {
+    window.location.href = "../dynamics/php/registrarMascota.php";
 }
 
-function registerMascot() {
-    window.location.href = "../dynamics/php/modmascota.php";
+function modPet(){
+    window.location.href = "../dynamics/php/modMascota.php";
 }
 
 $("#res").click(registerEmployee);
 $("#res1").click(registerClient);
-$("#res2").click(registerMascot);
+$("#res2").click(registerPet);
 $("#res3").click(registerJob);
 $("#res4").click(modJob);
 
 
 $("#res6").click(modClient);
-$("#res7").click(modMascot);
+$("#res7").click(modPet);

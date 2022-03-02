@@ -81,7 +81,7 @@ function modPro(){
     alert("mod Mascot");
 }
 function registerPro() {
-    window.location.href = "../php/registrarProcedimiento.php";
+    window.location.href = "../php/registroProcedimiento.php";
 }
 
 function modPro() {
@@ -99,4 +99,4 @@ $("#res4").click(modDiag);
 
 $("#res5").click(registerPro);
 
-$("#res5").click(modPro);
+$("#res6").click(modPro);
