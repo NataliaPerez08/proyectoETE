@@ -1,8 +1,7 @@
 <?php
     session_start();
     if(isset($_SESSION['id'])){
-      /*if(isset($_SESSION['idClient'])){
-      }*/
+      if(isset($_SESSION['idClient'])){
         $servername = "localhost";
         $username = "root";
         $password = "";
@@ -34,15 +33,7 @@
         echo '<input type="textarea" name="diag">';
 
         echo '<label>Dueño:</label>';
-        echo "<select name='owner'";
-                  $id=1;
-                  $sql = "SELECT ID,Nombres,Apellidos FROM Cliente";
-                  $result = mysqli_query($conn, $sql);
-                  do{
-                      echo "    <option value='".$row[0]."'>".utf8_encode($row[1])." 
-                      ".utf8_encode($row[2])."</option>";
-                  }while ($row = mysqli_fetch_array($result));
-                  echo "    </select><br><br>";
+        echo "<input type='hidden' value='".$id."'>";
 
         echo '<input type="submit" value="submit"></form>';
         // Registro Empleado
@@ -89,6 +80,6 @@
         }
         echo "</form>  <a href='../../templates/empleado.html'>Regresar</a>";
         $conn->close();
+      }else{ echo "<a href='modCliente.php'>Seleccionar cliente</a>"}
     }else{ echo "<a href='../../'>Inicia sesión</a>";}
-    
 ?>
