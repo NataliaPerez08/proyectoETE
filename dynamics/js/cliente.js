@@ -74,17 +74,35 @@ function modEmail(){
     }
 }
 
-function modMascot(){
+function modPet(){
     window.location.href = "../php/modMascota.php";
 }
 
-function registerMascot() {
-    window.location.href = "../php/registrarMascota.php";
+function registerPet() {
+    window.location.href = "../php/registrarMascotas.php";
+}
+
+function delClient(){
+    if ($("#modDivDel").length === 0){
+        $content = $("#frm6").append("<h2>¿Está seguro? Se eliminara el registro del cliente seleccionado y sus mascotas</h2>");
+        
+        $modDivDel = $('<div id="modDivDel"></div>');
+        $content.append($modDivDel);
+        $form = $("<form></form>", {action:"../php/modCliente.php", method:'POST',id:"form"});
+        $modDivDel.append($form);
+
+        $form.append('<button name="del">Confirmar</button>');
+        $form.append($sendBtton);
+    }else{
+        console.log("Ya existe")
+    }
 }
 
 $("#res").click(modName);
 $("#res1").click(modLastName);
 $("#res2").click(modTel);
 $("#res3").click(modEmail);
-$("#res4").click(modMascot);
-$("#res5").click(registerMascot);
+$("#res4").click(modPet);
+$("#res5").click(registerPet);
+
+$("#res6").click(delClient);

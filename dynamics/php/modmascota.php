@@ -1,3 +1,13 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+        <link rel="icon" type="image/png" sizes="32x32" href="../statics/media/favicon/logo.png">
+        <title>Modificar Mascota</title>
+    </head>
+    <body>
 <?php
 session_start();
 if(isset($_SESSION['id'])){
@@ -40,7 +50,8 @@ if(isset($_SESSION['id'])){
                     }
                     echo "</h4><br>";
 
-                    echo "<body>
+                    echo "
+                        <h4>Recargar para ver cambios</h4>
                         <div id='res'>Modificar nombre</div>
                         <div id='frm'></div>
                 
@@ -57,10 +68,11 @@ if(isset($_SESSION['id'])){
                         <div id='frm4'></div>
                 
                         <div id='res5'>Registrar procedimiento</div>
-                        <div id='res6'>Modificar procedimiento</div>         
-                        </body>";
+                        <div id='res6'>Modificar procedimiento</div>
+                        <div id='res7'>Borrar registro de la mascota seleccionada</div>
+                        <div id='frm5'></div>           
+                        ";
                 
-                    echo "Recargar para ver cambios";
                     
                     if(isset($_POST['newName']) && $_POST['newName'] != ""){
                         $newName = $_POST['newName'];
@@ -81,6 +93,13 @@ if(isset($_SESSION['id'])){
                         $newDiag = $_POST['newDiag'];
                         $sql = "UPDATE Mascota SET Diagnostico='".$newDiag."' WHERE ID='".$idPet."'";
                         $mod2 = mysqli_query($conn, $sql);
+                    }
+                    if(isset($_POST['del'])){
+                        $sql = "DELETE FROM Mascota WHERE ID='".$idPet."'";
+                        if(mysqli_query($conn, $sql)){
+                            unset($_SESSION['idPet']); 
+                            header('Location: ../../templates/empleado.html');
+                        }
                     }
                 }
             } 
@@ -107,16 +126,7 @@ if(isset($_SESSION['id'])){
     echo "<a href='../../'>Inicia sesión</a>";
 }
 ?>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-    
-        <link rel="icon" type="image/png" sizes="32x32" href="../statics/media/favicon/logo.png">
-        <title>Modificar Mascota</title>
-    </head>
-    
+    </body>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="../js/mascota.js"></script>
 </html>

@@ -23,11 +23,21 @@ if(isset($_SESSION['id'])){
         $result = mysqli_query($conn, $sql);
         if($result){
             if($row = mysqli_fetch_array($result)){
-            echo "<h2>Se ha seleccionado el cliente: ".utf8_encode($row[1])." ".utf8_encode($row[2])."</h2><br><br>";
-            echo "<h3>Correo Electronico:".utf8_encode($row[3])."<br>Telefono:".utf8_encode($row[4])."</h2><br><br>";
-            echo "<h3>Mascotas registradas: ".utf8_encode($row[5])."</h2><br><br>";
+            echo "<h3>Se ha seleccionado el cliente: ".utf8_encode($row[1])." ".utf8_encode($row[2])."</h3><br><br>";
+            echo "<h3>Correo Electronico:".utf8_encode($row[3])."<br>Telefono:".utf8_encode($row[4])."</h3><br><br>";
+            echo "<h3>Mascotas registradas: "; 
+            $tmp = explode(",", $row[5]);
+                for ($i=0; $i < count($tmp)-1; $i++) { 
+                    $sqlP = "SELECT * FROM Mascota WHERE ID='". $tmp[$i]. "'";
+                    $query = mysqli_query($conn, $sqlP);
+                    if($row = mysqli_fetch_array($query)){
+                        echo $row[2].", ";
+                    }
+                }
+                echo "</h3><br><br>";
             }
             echo "<body>
+                <h4>Recargar para ver cambios</h4>
                 <div id='res'>Modificar nombres</div>
                 <div id='frm'></div>
 
@@ -43,10 +53,11 @@ if(isset($_SESSION['id'])){
                 <div id='res4'>Modificar mascotas</div>
                 <div id='frm4'></div>
 
-                <div id='res5'>Registrar mascota</div>        
-                </body>";
+                <div id='res5'>Registrar mascota</div>
 
-            echo "Recargar para ver cambios";
+                <div id='res6'>Borrar registro del cliente seleccionado</div>
+                <div id='frm6'></div>         
+                </body>";
             if(isset($_POST['newLastname']) && $_POST['newLastname'] != ""){
                 $newLastname = $_POST['newLastname'];
                 $sql = "UPDATE Cliente SET Apellidos='".$newLastname."' WHERE ID='".$idC."'";
@@ -68,6 +79,16 @@ if(isset($_SESSION['id'])){
                 $sql = "UPDATE Cliente SET CorreoE='".$newEmail."' WHERE ID='".$idC."'";
                 $mod2 = mysqli_query($conn, $sql);
             }
+            if(isset($_POST['del'])){
+                $sql = "DELETE FROM Cliente WHERE ID='".$idC."'";
+                if(mysqli_query($conn, $sql)){
+                    $sqlD = "DELETE FROM Mascota WHERE Propietario='".$idC."'";
+                    if(mysqli_query($conn, $sqlD)){
+                        unset($_SESSION['idClient']); 
+                        header('Location: ../../templates/empleado.html');
+                    }
+                }
+            }
         }
         echo "<form action='modCliente.php' method='POST'><button name='terminar'>Terminar</button></form>";
     }else{
@@ -78,7 +99,7 @@ if(isset($_SESSION['id'])){
         $sql = "SELECT ID,Nombres,Apellidos FROM Cliente";
         $result = mysqli_query($conn, $sql);
         do{
-            echo "<option value='".$row[0]."'>".utf8_encode($row[1])."  ".utf8_encode($row[1])."</option>";
+            echo "<option value='".$row[0]."'>".utf8_encode($row[1])."  ".utf8_encode($row[2])."</option>";
         }while ($row = mysqli_fetch_array($result));
         echo "    </select><br><br>";
         echo "<input type='submit' name='enviar'></form>";

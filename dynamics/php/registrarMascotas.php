@@ -33,24 +33,20 @@
         echo '<input type="textarea" name="diag">';
 
         //echo '<label>Dueño:</label>';
-        echo "<input type='hidden' name='owner' value='".$_SESSION['idClient']."'>";
-        echo $_SESSION['idClient'];
-
         echo '<input type="submit" value="submit"></form>';
         // Registro Empleado
         $n = isset($_POST['name']);
         $a = isset($_POST['age']);
         $t = isset($_POST['type']);
         $d = isset($_POST['diag']);
-        $o = isset($_POST['owner']);
         $v = isset($_POST['vet']);
   
-        if ($n && $a && $t && $d && $o && $v){
+        if ($n && $a && $t && $d && $v){
           $name = $_POST['name'];
           $age = $_POST['age'];
           $type = $_POST['type'];
           $diag = $_POST['diag'];
-          $owner = $_POST['owner'];
+          $owner = $_SESSION['idClient'];
           $vet = $_POST['vet'];
 
           $n = $name != ""; 
@@ -58,6 +54,7 @@
           $t = $type != "";
           $d = $diag != ""; 
           $v = $vet > 0;
+          $o = $owner > 0;
 
           if ($n && $a && $t && $d && $o && $v) {
             $sql = sprintf("INSERT INTO Mascota (Propietario, Nombre, Edad, Tipo, Veterinario, Diagnostico) VALUES ('%d','%s','%d','%s','%s','%s')",
@@ -65,7 +62,6 @@
                  
             if (mysqli_query($conn, $sql)) {
               $last_id = $conn->insert_id;
-              //echo "Se ha registrado exitosamente".$last_id;
               $consult = "SELECT Mascotas FROM Cliente WHERE ID='".$owner."'";
               $query = mysqli_query($conn, $consult);
 

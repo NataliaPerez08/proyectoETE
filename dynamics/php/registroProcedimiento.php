@@ -100,7 +100,7 @@
             }else{ echo "Verifica la entrada";}
                 }
         }
-        echo "</form>  <a href='../../templates/empleado.html'>Regresar</a>";
+        echo "<a href='../../templates/empleado.html'>Regresar</a>";
         $conn->close();
       }else{echo "Selecciona una mascota Primero";}
     }else{echo "Selecciona un cliente primero";}

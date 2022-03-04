@@ -18,7 +18,7 @@ function modClient(){
 }
 
 function registerPet() {
-    window.location.href = "../dynamics/php/registrarMascota.php";
+    window.location.href = "../dynamics/php/registrarMascotas.php";
 }
 
 function modPet(){

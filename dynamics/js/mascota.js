@@ -61,10 +61,10 @@ function modDiag(){
         
         $modDivEmail = $('<div id="modDivEmail"></div>');
         $content.append($modDivEmail);
-        $form = $("<form></form>", {action:"../php/modCliente.php", method:'POST',id:"form"});
+        $form = $("<form></form>", {action:"../php/modMascota.php", method:'POST',id:"form"});
         $modDivEmail.append($form);
     
-        $form.append("Nuevo Diagnostico:");
+        $form.append("<label>Nuevo Diagnostico:</label>");
         $form.append('<input type="text" name="newDiag">');
     
         $sendBtton = $('<input type="submit" value="submit">');
@@ -88,6 +88,21 @@ function modPro() {
     //window.location.href = "../php/registrarMascotas.php";
     alert("modPro");
 }
+function delPet(){
+    if ($("#modDivEmail").length === 0){
+        $content = $("#frm5").append("<h2>¿Está seguro de borrar el registro?</h2>");
+        
+        $modDivEmail = $('<div id="modDivEmail"></div>');
+        $content.append($modDivEmail);
+        $form = $("<form></form>", {action:"../php/modMascota.php", method:'POST',id:"form"});
+        $modDivEmail.append($form);
+
+        $form.append('<button name="del">Confirmar</button>');
+        $form.append($sendBtton);
+    }else{
+        console.log("Ya existe")
+    }
+}
 
 $("#res").click(modName);
 $("#res1").click(modAge);
@@ -100,3 +115,5 @@ $("#res4").click(modDiag);
 $("#res5").click(registerPro);
 
 $("#res6").click(modPro);
+
+$("#res7").click(delPet);
