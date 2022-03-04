@@ -1,3 +1,14 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+        <link rel="icon" type="image/png" sizes="32x32" href="../statics/media/favicon/logo.png">
+        <title>Registro Procedimiento</title>
+    </head>
+    <body>
+        <h1>Registro Procedimiento</h1>
 <?php
   session_start();
   if(isset($_SESSION['id'])){
@@ -91,10 +102,10 @@
                 $sql = "UPDATE Mascota SET Procedimiento='".$tmp."' WHERE ID='".$_SESSION['idPet']."'";
                 if(mysqli_query($conn, $sql)){ 
                   echo "Se ha registrado exitosamente";
-                  $name != ""; 
-                  $des != "";
-                  $date != "";
-                  $cost != ""; 
+                  $name = ""; 
+                  $des = "";
+                  $date = "";
+                  $cost = ""; 
                 }
               }else {echo "<br>Error: " . $sql . "<br>" . mysqli_error($conn); }  
             }else{ echo "Verifica la entrada";}

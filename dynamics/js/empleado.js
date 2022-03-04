@@ -25,11 +25,17 @@ function modPet(){
     window.location.href = "../dynamics/php/modMascota.php";
 }
 
+function modEmployee(){
+    window.location.href = "../dynamics/php/modEmpleado.php";
+}
+
 $("#res").click(registerEmployee);
 $("#res1").click(registerClient);
 $("#res2").click(registerPet);
 $("#res3").click(registerJob);
 $("#res4").click(modJob);
+
+$("#res5").click(modEmployee);
 
 
 $("#res6").click(modClient);

@@ -1,3 +1,14 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+        <link rel="icon" type="image/png" sizes="32x32" href="../statics/media/favicon/logo.png">
+        <title>Registrar Mascota</title>
+    </head>
+    <body>
+        <h1>Registrar Mascota</h1>
 <?php
     session_start();
     if(isset($_SESSION['id'])){

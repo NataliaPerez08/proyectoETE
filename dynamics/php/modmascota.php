@@ -8,6 +8,7 @@
         <title>Modificar Mascota</title>
     </head>
     <body>
+        <h1>Modificar Mascota</h1>
 <?php
 session_start();
 if(isset($_SESSION['id'])){
@@ -38,17 +39,21 @@ if(isset($_SESSION['id'])){
                 if($row = mysqli_fetch_array($query)){
                     echo "<br> la mascota ".utf8_encode($row[2])."</h2>";
                     echo "<h4>Edad: ".utf8_encode($row[3])." <br>Tipo: ".utf8_encode($row[4]);
-                    echo "<br>Veterinario: ".utf8_encode($row[5])." <br>Diagnostico: ".utf8_encode($row[6]);
-                    echo "<br>Procedimientos: ";
-                    $tmp = explode(",", $row[7]);
-                    for ($i=0; $i < count($tmp)-1 ; $i++) { 
-                        $sqlP = "SELECT * FROM Procedimiento WHERE ID ='". $tmp[$i]. "'";
-                        $query = mysqli_query($conn, $sqlP);
-                        if($row = mysqli_fetch_array($query)){
-                        echo $row[1].", ";
+                    $sqlV = "SELECT Nombres,Apellidos FROM Empleado WHERE ID ='". $row[5]. "'";
+                    $query = mysqli_query($conn,$sqlV);
+                    if($row2 = mysqli_fetch_array($query)){
+                        echo "<br>Veterinario: ".utf8_encode($row2[0])." ".utf8_encode($row2[1])."<br>Diagnostico: ".utf8_encode($row[6]);
+                        echo "<br>Procedimientos: ";
+                        $tmp = explode(",", $row[7]);
+                        for ($i=0; $i < count($tmp)-1 ; $i++) { 
+                            $sqlP = "SELECT * FROM Procedimiento WHERE ID ='". $tmp[$i]. "'";
+                            $query = mysqli_query($conn, $sqlP);
+                            if($row = mysqli_fetch_array($query)){
+                            echo $row[1].", ";
+                            }
                         }
+                        echo "</h4><br>";
                     }
-                    echo "</h4><br>";
 
                     echo "
                         <h4>Recargar para ver cambios</h4>
@@ -60,11 +65,15 @@ if(isset($_SESSION['id'])){
                 
                         <div id='res2'>Modificar tipo</div>
                         <div id='frm2'></div>
-                
-                        <div id='res3'>Veterinario</div>
+
+                        <div id='res3'>
+                            <form action='modMascota.php' method='GET'>
+                            <button name='modVet'>Modificar veterinario</button>
+                            </form> 
+                        </div>
                         <div id='frm3'></div>
                 
-                        <div id='res4'>Diagnostico</div>
+                        <div id='res4'>Modificar Diagnostico</div>
                         <div id='frm4'></div>
                 
                         <div id='res5'>Registrar procedimiento</div>
@@ -100,6 +109,25 @@ if(isset($_SESSION['id'])){
                             unset($_SESSION['idPet']); 
                             header('Location: ../../templates/empleado.html');
                         }
+                    }
+                    if(isset($_POST['vet'])){
+                        $newVet = $_POST['vet'];
+                        $sql = "UPDATE Mascota SET Veterinario='".$newVet."' WHERE ID='".$idPet."'";
+                        $mod2 = mysqli_query($conn, $sql);
+                    }
+                    if(isset($_GET['modVet'])){
+                        echo "<br><br><div>";
+                        echo "<form action='modMascota.php' method='POST'>";
+                        echo '<label>Veterinario:</label>';
+                        echo "<select name='vet'";
+                            $id=1;
+                            $sql = 'SELECT ID,Nombres,Apellidos FROM Empleado WHERE Cargo='.$id;
+                            $result = mysqli_query($conn, $sql);
+                            do{
+                                echo "    <option value='".$row[0]."'>".utf8_encode($row[1])." ".utf8_encode($row[2])."</option>";
+                            }while($row = mysqli_fetch_array($result));
+                            echo "    </select><br><br>";
+                        echo "<input type='submit' value='submit'></form></div>";
                     }
                 }
             } 

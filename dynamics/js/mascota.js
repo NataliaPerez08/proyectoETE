@@ -73,12 +73,8 @@ function modDiag(){
         console.log("Ya existe")
     }
 }
-
-function modVet(){
-    alert("mod Vet");
-}
 function modPro(){
-    alert("mod Mascot");
+    alert("mod Procedimiento");
 }
 function registerPro() {
     window.location.href = "../php/registroProcedimiento.php";
@@ -107,8 +103,6 @@ function delPet(){
 $("#res").click(modName);
 $("#res1").click(modAge);
 $("#res2").click(modType);
-
-$("#res3").click(modVet);
 
 $("#res4").click(modDiag);
 
