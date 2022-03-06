@@ -68,7 +68,7 @@ if(isset($_SESSION['id'])){
 
                         <div id='res3'>
                             <form action='modMascota.php' method='GET'>
-                            <button name='modVet'>Modificar veterinario</button>
+                                <button name='modVet'>Modificar veterinario</button>
                             </form> 
                         </div>
                         <div id='frm3'></div>

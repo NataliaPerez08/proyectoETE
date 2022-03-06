@@ -7,13 +7,13 @@ function modName(){
         $form = $("<form></form>", {action:"../php/modEmpleado.php", method:'POST',id:"form"});
         $modDiv.append($form);
     
-        $form.append("Nuevo Nombre:");
+        $form.append("Nuevo nombre:");
         $form.append('<input type="text" name="newName">');
     
         $sendBtton = $('<input type="submit" value="submit">');
         $form.append($sendBtton);
     }else{
-        console.log("Ya existe")
+        $("#frm").empty();
     }
 }
 
@@ -26,13 +26,13 @@ function modLastName(){
         $form = $("<form></form>", {action:"../php/modEmpleado.php", method:'POST',id:"form"});
         $modDivLN.append($form);
     
-        $form.append("Nuevo Apellido:");
+        $form.append("Nuevo apellido:");
         $form.append('<input type="name" name="newLastname">');
     
         $sendBtton = $('<input type="submit" value="submit">');
         $form.append($sendBtton);
     }else{
-        console.log("Ya existe")
+        $("#frm1").empty();
     }
 }
 
@@ -46,13 +46,13 @@ function modEmail(){
         $form = $("<form></form>", {action:"../php/modEmpleado.php", method:'POST',id:"form"});
         $modDivEmail.append($form);
     
-        $form.append("Nuevo Apellido:");
+        $form.append("Nuevo correo electronico:");
         $form.append('<input type="name" name="newEmail">');
     
         $sendBtton = $('<input type="submit" value="submit">');
         $form.append($sendBtton);
     }else{
-        console.log("Ya existe")
+        $("#frm2").empty();
     }
 }
 
@@ -65,24 +65,24 @@ function modTel(){
         $form = $("<form></form>", {action:"../php/modEmpleado.php", method:'POST',id:"form"});
         $modDivTel.append($form);
     
-        $form.append("Nuevo Telefono:");
+        $form.append("Nuevo telefono:");
         $form.append('<input type="name" name="newTel">');
     
         $sendBtton = $('<input type="submit" value="submit">');
         $form.append($sendBtton);
     }else{
-        console.log("Ya existe")
+        $("#frm3").empty();
     }
 }
 
 function modSal(){
-    if ($("#modDivTel").length === 0){
+    if ($("#modDivSal").length === 0){
         $content = $("#frm4").append("<h2>Empleado. Modificar Salario:</h2>");
         
-        $modDivTel = $('<div id="modDivTel"></div>');
-        $content.append($modDivTel);
+        $modDivSal = $('<div id="modDivSal"></div>');
+        $content.append($modDivSal);
         $form = $("<form></form>", {action:"../php/modEmpleado.php", method:'POST',id:"form"});
-        $modDivTel.append($form);
+        $modDivSal.append($form);
     
         $form.append("Nuevo Salario:");
         $form.append('<input type="name" name="newSal">');
@@ -90,13 +90,13 @@ function modSal(){
         $sendBtton = $('<input type="submit" value="submit">');
         $form.append($sendBtton);
     }else{
-        console.log("Ya existe")
+        $("#frm4").empty();
     }
 }
 
 function modPass() {
     if ($("#modDivPass").length === 0){
-        $content = $("#frm3").append("<h2>Empleado. Modificar contraseña</h2>");
+        $content = $("#frm5").append("<h2>Empleado. Modificar contraseña</h2>");
         
         $modDivPass = $('<div id="modDivPass"></div>');
         $content.append($modDivPass);
@@ -104,18 +104,18 @@ function modPass() {
         $modDivPass.append($form);
     
         $form.append("Nueva Contraseña:");
-        $form.append('<input type="name" name="newEmail">');
+        $form.append('<input type="name" name="newPass">');
     
         $sendBtton = $('<input type="submit" value="submit">');
         $form.append($sendBtton);
     }else{
-        console.log("Ya existe")
+        $("#frm5").empty();
     }
 }
 
-function delPass(){
+function del(){
     if ($("#modDivDel").length === 0){
-        $content = $("#frm6").append("<h2>¿Está seguro? Se eliminara el registro del empleado seleccionado</h2>");
+        $content = $("#frm7").append("<h2>¿Está seguro? Se eliminara el registro del empleado seleccionado</h2>");
         
         $modDivDel = $('<div id="modDivDel"></div>');
         $content.append($modDivDel);
@@ -123,9 +123,8 @@ function delPass(){
         $modDivDel.append($form);
 
         $form.append('<button name="del">Confirmar</button>');
-        $form.append($sendBtton);
     }else{
-        console.log("Ya existe")
+        $("#frm7").empty();
     }
 }
 
@@ -135,3 +134,5 @@ $("#res2").click(modEmail);
 $("#res3").click(modTel);
 $("#res4").click(modSal);
 $("#res5").click(modPass);
+
+$("#res7").click(del);

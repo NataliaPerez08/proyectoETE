@@ -22,7 +22,7 @@
         $result = mysqli_query($conn,$sql);
         if ($result){
             if($row = mysqli_fetch_array($result)){
-                //$dbhash = $row[0];
+                $dbhash = $row[0];
                 //Temporal
                 $dbhash = password_hash($pass,PASSWORD_DEFAULT,[15]);
                 if(password_verify($pass,$dbhash)){

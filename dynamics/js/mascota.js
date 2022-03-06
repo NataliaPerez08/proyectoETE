@@ -13,7 +13,7 @@ function modName(){
         $sendBtton = $('<input type="submit" value="submit">');
         $form.append($sendBtton);
     }else{
-        console.log("Ya existe")
+        $("#frm").empty();
     }
 }
 
@@ -32,7 +32,7 @@ function modAge(){
         $sendBtton = $('<input type="submit" value="submit">');
         $form.append($sendBtton);
     }else{
-        console.log("Ya existe")
+        $("#frm1").empty();
     }
 }
 
@@ -51,7 +51,7 @@ function modType(){
         $sendBtton = $('<input type="submit" value="submit">');
         $form.append($sendBtton);
     }else{
-        console.log("Ya existe")
+        $("#frm2").empty();
     }
 }
 
@@ -70,7 +70,7 @@ function modDiag(){
         $sendBtton = $('<input type="submit" value="submit">');
         $form.append($sendBtton);
     }else{
-        console.log("Ya existe")
+        $("#frm3").empty();
     }
 }
 function modPro(){
@@ -96,7 +96,7 @@ function delPet(){
         $form.append('<button name="del">Confirmar</button>');
         $form.append($sendBtton);
     }else{
-        console.log("Ya existe")
+        $("#frm4").empty();
     }
 }
 

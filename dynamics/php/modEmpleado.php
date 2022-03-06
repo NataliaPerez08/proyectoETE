@@ -65,9 +65,14 @@ if(isset($_SESSION['id'])){
                 <div id='res5'>Modificar contraseña</div>
                 <div id='frm5'></div>
 
-                <div id='res6'>Modificar puesto</div>
+                <div id='res6'>
+                    <form action='modEmpleado.php' method='GET'>
+                        <button name='mod'>Modificar puesto</button>
+                    </form> 
+                </div>
                 
-                <div id='res7'>Modificar empleadp</div>";
+                <div id='res7'>Borrar empleado</div>
+                <div id='frm7'></div>";
         
             
             if(isset($_POST['newName']) && $_POST['newName'] != ""){
@@ -80,33 +85,53 @@ if(isset($_SESSION['id'])){
                 $sql = "UPDATE Empleado SET Apellidos='".$newLastname."' WHERE ID='".$idEm."'";
                 $mod = mysqli_query($conn, $sql);
             }
-            if(isset($_POST['newDiag']) && $_POST['newDiag'] != ""){
-                $newDiag = $_POST['newDiag'];
-                $sql = "UPDATE Mascota SET Diagnostico='".$newDiag."' WHERE ID='".$idEm."'";
+            if(isset($_POST['newEmail']) && $_POST['newEmail'] != ""){
+                $newEmail = $_POST['newEmail'];
+                $sql = "UPDATE Empleado SET CorreoE='".$newEmail."' WHERE ID='".$idEm."'";
                 $mod2 = mysqli_query($conn, $sql);
             }
+            if(isset($_POST['newTel']) && $_POST['newTel'] != ""){
+                $newTel = $_POST['newTel'];
+                $sql = "UPDATE Empleado SET Telefono='".$newTel."' WHERE ID='".$idEm."'";
+                $mod2 = mysqli_query($conn, $sql);
+            }
+
+            if(isset($_POST['newSal']) && $_POST['newSal'] != ""){
+                $newSal = $_POST['newSal'];
+                $sql = "UPDATE Empleado SET Salario='".$newSal."' WHERE ID='".$idEm."'";
+                $mod2 = mysqli_query($conn, $sql);
+            }
+
+            if(isset($_POST['newPass']) && $_POST['newPass'] != ""){
+                $newPass = $_POST['newPass'];
+                $newPass = password_hash($newPass,PASSWORD_DEFAULT,[15]);
+                $sql = "UPDATE Empleado SET Contraseña='".$newPass."' WHERE ID='".$idEm."'";
+                $mod2 = mysqli_query($conn, $sql);
+            }
+
+
+
             if(isset($_POST['del'])){
-                $sql = "DELETE FROM Mascota WHERE ID='".$idEm."'";
+                $sql = "DELETE FROM Empleado WHERE ID='".$idEm."'";
                 if(mysqli_query($conn, $sql)){
                     unset($_SESSION['idEm']); 
                     header('Location: ../../templates/empleado.html');
                 }
             }
-            if(isset($_POST['vet'])){
-                $newVet = $_POST['vet'];
-                $sql = "UPDATE Mascota SET Veterinario='".$newVet."' WHERE ID='".$idEm."'";
+            if(isset($_POST['modJob'])){
+                $newJob = $_POST['modJob'];
+                $sql = "UPDATE Empleado SET Puesto='".$newJob."' WHERE ID='".$idEm."'";
                 $mod2 = mysqli_query($conn, $sql);
             }
-            if(isset($_GET['modVet'])){
+            if(isset($_GET['mod'])){
                 echo "<br><br><div>";
-                echo "<form action='modMascota.php' method='POST'>";
-                echo '<label>Veterinario:</label>';
-                echo "<select name='vet'";
-                    $id=1;
-                    $sql = 'SELECT ID,Nombres,Apellidos FROM Empleado WHERE Cargo='.$id;
+                echo "<form action='modEmpleado.php' method='POST'>";
+                echo '<label>Puesto:</label>';
+                echo "<select name='modJob'";
+                    $sql = 'SELECT ID,Nombre FROM Puesto';
                     $result = mysqli_query($conn, $sql);
                     do{
-                        echo "    <option value='".$row[0]."'>".utf8_encode($row[1])." ".utf8_encode($row[2])."</option>";
+                        echo "    <option value='".$row[0]."'>".utf8_encode($row[1])."</option>";
                     }while($row = mysqli_fetch_array($result));
                     echo "    </select><br><br>";
                 echo "<input type='submit' value='submit'></form></div>";
