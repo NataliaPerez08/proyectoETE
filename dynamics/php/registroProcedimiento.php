@@ -33,19 +33,6 @@
             echo "<br> la mascota ".utf8_encode($row[2])."</h2>";
             echo "<h3>Edad: ".utf8_encode($row[3])." <br>Tipo: ".utf8_encode($row[4]);
             echo "<br>Veterinario: ".utf8_encode($row[5])." <br>Diagnostico: ".utf8_encode($row[6]);
-            /*$tmp = explode(",", $row[7]);
-            for ($i=0; $i < count($tmp)-1 ; $i++) { 
-              $sqlP = "SELECT * FROM Procedimiento WHERE ID ='". $tmp[$i]. "'";
-              $query = mysqli_query($conn, $sqlP);
-              if($row = mysqli_fetch_array($query)){
-                echo "Nombre: ".$row[1];
-                echo "<br>Descripción: ".$row[2];
-                echo "<br>Fecha: ".$row[3];
-                echo "<br>Costo: ".$row[4];
-                echo "<br><br><br>";
-              }
-            }
-            echo "</h3><br>";*/
             echo "<br>Procedimientos: ";
             $tmp = explode(",", $row[7]);
             for ($i=0; $i < count($tmp)-1 ; $i++) { 
@@ -91,8 +78,8 @@
             $ct = $cost != ""; 
 
             if($n && $d && $dt && $ct){
-              $sql = sprintf("INSERT INTO Procedimiento (Nombre, Descripcion, Fecha, Costo) VALUES ('%s','%s','%s', '%f')",
-                            $name, $des, $date, $cost);
+              $sql = sprintf("INSERT INTO Procedimiento (Nombre, Descripcion, Fecha, Costo, Paciente) VALUES ('%s','%s','%s', '%f', '%d')",
+                            $name, $des, $date, $cost, $_SESSION['idPet']);
               if (mysqli_query($conn, $sql)) {
                 $last_id = $conn->insert_id;
                 $sql = "SELECT Procedimiento FROM Mascota WHERE ID ='".$_SESSION['idPet']. "'";

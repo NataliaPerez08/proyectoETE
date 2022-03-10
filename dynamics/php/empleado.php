@@ -75,7 +75,7 @@
           echo "Ese correo ya fue registrado";
         }else{
           $hashpass = password_hash($pass,PASSWORD_DEFAULT,[15]);
-          $sql = sprintf("INSERT INTO Empleado (Nombres, Apellidos, CorreoE, Telefono, Salario, Contraseña, Cargo) VALUES ('%s','%s','%s','%u','%f','%s','%s')",
+          $sql = sprintf("INSERT INTO Empleado (Nombres, Apellidos, CorreoE, Telefono, Salario, Contraseña, Puesto) VALUES ('%s','%s','%s','%u','%f','%s','%s')",
                         $name,
                         $lastname,
                         $email,

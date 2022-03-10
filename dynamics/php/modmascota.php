@@ -23,7 +23,7 @@ if(isset($_SESSION['id'])){
         if(isset($_POST['pet']) && $_POST['pet'] != ""){
             $idPet = $_POST['pet'];
             $_SESSION['idPet'] = $idPet;
-            header("Location: modMascota.php");
+            //header("Location: modMascota.php");
         }
         if(isset($_SESSION['idPet'])){
             if(isset($_POST['terminar'])){unset($_SESSION['idPet']); header('Location: ../../templates/empleado.html');}
@@ -43,6 +43,7 @@ if(isset($_SESSION['id'])){
                     $query = mysqli_query($conn,$sqlV);
                     if($row2 = mysqli_fetch_array($query)){
                         echo "<br>Veterinario: ".utf8_encode($row2[0])." ".utf8_encode($row2[1])."<br>Diagnostico: ".utf8_encode($row[6]);
+                    }else{ echo "<br>No se ha encontrado veterinario registrado";}
                         echo "<br>Procedimientos: ";
                         $tmp = explode(",", $row[7]);
                         for ($i=0; $i < count($tmp)-1 ; $i++) { 
@@ -53,7 +54,6 @@ if(isset($_SESSION['id'])){
                             }
                         }
                         echo "</h4><br>";
-                    }
 
                     echo "
                         <h4>Recargar para ver cambios</h4>
@@ -79,7 +79,13 @@ if(isset($_SESSION['id'])){
                         <div id='res5'>Registrar procedimiento</div>
                         <div id='res6'>Modificar procedimiento</div>
                         <div id='res7'>Borrar registro de la mascota seleccionada</div>
-                        <div id='frm5'></div>           
+                        <div id='frm5'></div>
+                        
+                        <div id='res8'>
+                            <form action='modProcedimiento.php' method='GET'>
+                                <button name='details'>Ver detalles de todos los procedimientos</div>
+                            </form>
+                        </div>
                         ";
                 
                     
@@ -121,7 +127,7 @@ if(isset($_SESSION['id'])){
                         echo '<label>Veterinario:</label>';
                         echo "<select name='vet'";
                             $id=1;
-                            $sql = 'SELECT ID,Nombres,Apellidos FROM Empleado WHERE Cargo='.$id;
+                            $sql = 'SELECT ID,Nombres,Apellidos FROM Empleado WHERE Puesto='.$id;
                             $result = mysqli_query($conn, $sql);
                             do{
                                 echo "    <option value='".$row[0]."'>".utf8_encode($row[1])." ".utf8_encode($row[2])."</option>";

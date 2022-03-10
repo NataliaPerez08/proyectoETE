@@ -80,7 +80,7 @@
                 $temp = $last_id.",".$row[0];
                 $upM = "UPDATE Cliente SET Mascotas='".$temp."' WHERE ID='".$owner."'";
                 if (mysqli_query($conn, $upM)) {
-                  echo "Se ha registrado exitosamente";
+                  header('Location: modMascota.php');
                 }
               }
             } else {echo "<br>Error: " . $sql . "<br>" . mysqli_error($conn); }

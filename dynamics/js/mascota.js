@@ -74,15 +74,10 @@ function modDiag(){
     }
 }
 function modPro(){
-    alert("mod Procedimiento");
+    window.location.href = "../php/modProcedimiento.php";
 }
 function registerPro() {
     window.location.href = "../php/registroProcedimiento.php";
-}
-
-function modPro() {
-    //window.location.href = "../php/registrarMascotas.php";
-    alert("modPro");
 }
 function delPet(){
     if ($("#modDivEmail").length === 0){
@@ -94,7 +89,6 @@ function delPet(){
         $modDivEmail.append($form);
 
         $form.append('<button name="del">Confirmar</button>');
-        $form.append($sendBtton);
     }else{
         $("#frm4").empty();
     }
