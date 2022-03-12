@@ -1,3 +1,14 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+        <title>Registro empleado</title>
+        <link rel="stylesheet" href="../../statics/css/formularios.css">
+        <link rel="icon" type="image/png" sizes="32x32" href="../../statics/media/favicon/logo.png">
+    </head>
+    <body>
 <?php
   session_start();
   if(isset($_SESSION['id'])){
@@ -11,7 +22,8 @@
     $dbname = "clinicaVeterinaria";
     $conn = new mysqli($servername, $username, $password,$dbname);
     if ($conn->connect_error) {      die("Connection failed: " . $conn->connect_error);      }
-    echo "<form action='empleado.php' method='POST'>";
+    echo "<br><a href='../../templates/empleado.html'>Regresar</a><br><br>";
+    echo "<h1>Registro Empleado</h1><form action='empleado.php' method='POST'>";
     
     echo '<label>Nombre(s):</label>';
     echo '<input type="text" name="name">';
@@ -41,7 +53,7 @@
     }while ($row = mysqli_fetch_array($result));
     echo "    </select><br><br>";
 
-    echo '<input type="submit" value="submit"></form>';
+    echo '<input type="submit" value="Enviar"></form>';
     // Registro Empleado
     $n = isset($_POST['name']);
     $ln = isset($_POST['lastname']);
@@ -92,7 +104,7 @@
         }  
       }else{ echo "Verifica la entrada";}
     }
-    echo "</form>  <a href='../../templates/empleado.html'>Regresar</a>";
+    echo "</form>";
     $conn->close();
   }else{ echo "<a href='../../'>Inicia sesión</a>";}   
 ?>

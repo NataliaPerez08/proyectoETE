@@ -1,0 +1,26 @@
+html{
+    background-color: gainsboro;
+}
+label{
+    padding: auto;
+    margin-top: 4%;
+    margin-bottom: 4em;
+    margin-left: 2em;
+    margin-right: 2em;
+}
+input,select,option {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+  }
+a{
+    border: white;
+	background-color: #96ae7c;
+	/*height: 30em;*/
+    padding: 12px 20px;
+    margin-bottom: 5%;
+    font-size: medium;
+    text-decoration: none;
+    color: white;
+}

@@ -1,3 +1,14 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+        <title>Modificar cliente</title>
+        <link rel="stylesheet" href="../../statics/css/estiloMod.css">
+        <link rel="icon" type="image/png" sizes="32x32" href="../../statics/media/favicon/logo.png">
+    </head>
+    <body>
 <?php
 session_start();
 if(isset($_SESSION['id'])){

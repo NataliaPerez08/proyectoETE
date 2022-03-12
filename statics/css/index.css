@@ -36,4 +36,19 @@ html{
     padding: 14px 16px;
     text-decoration: none;
 }
+
+#content {
+	font-size: large;
+	font-family: 'Times New Roman', Times, serif;
+	text-justify: auto;
+	padding: auto;
+	margin-bottom: 10%;
+  }
+
+#indexIMG {
+	width: 20%;
+  	height: auto;
+	border-radius: 40%;
+	float: left;
+}
   

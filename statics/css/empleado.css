@@ -1,0 +1,32 @@
+html{
+	background-color: gainsboro;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: large;
+}
+  header{
+	background-color: #067d96;
+	display: flex;
+	font-size: 2em;
+  }
+  
+  div{
+      border-color: whitesmoke;
+      background-color: #96ae7c;
+      display: flex;
+      color: white;
+      height: auto;
+      text-align: center;
+      margin-top: 3%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  button{
+    border: white;
+	background-color: #96ae7c;
+	display: flex;
+	color: white;
+	height: auto;
+    margin-top: 15%;
+	margin-left: auto;
+    font-size: medium;
+  }

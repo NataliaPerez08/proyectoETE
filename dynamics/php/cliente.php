@@ -1,6 +1,12 @@
+<!DOCTYPE html>
 <html>
     <head>
-        <title>Registro Cliente</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+        <title>Registro cliente</title>
+        <link rel="stylesheet" href="../../statics/css/formularios.css">
+        <link rel="icon" type="image/png" sizes="32x32" href="../../statics/media/favicon/logo.png">
     </head>
     <body>
         <?php
@@ -12,6 +18,7 @@
             $dbname = "clinicaVeterinaria";
             $conn = new mysqli($servername, $username, $password,$dbname);
             if ($conn->connect_error) { die("Connection failed: " . $conn->connect_error); }
+            echo "<br><a href='../../templates/empleado.html'>Regresar</a><br><br>";
             echo "<h1>Registro Cliente</h1>
             <form action='cliente.php' method='POST'>
             <label>Nombre(s):</label>
@@ -66,7 +73,6 @@
                     }
                 }else{ echo "Verifica la entrada";}
             }
-            echo "</form>  <a href='../../templates/empleado.html'>Regresar</a>";
         }else{
             echo "<a href='../../'>Inicia sesión</a>";
         }
