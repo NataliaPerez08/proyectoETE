@@ -1,14 +1,19 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-    
-        <link rel="icon" type="image/png" sizes="32x32" href="../statics/media/favicon/logo.png">
-        <title>Registro Procedimiento</title>
-    </head>
-    <body>
-        <h1>Registro Procedimiento</h1>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="../../statics/css/estiloMod.css">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../statics/media/favicon/logo.png">
+    <title>Registro procedimiento</title>
+</head>
+
+<body>
+    <header>
+        <h1>Registro procedimiento</h1>
+    </header>
 <?php
   session_start();
   if(isset($_SESSION['id'])){
@@ -20,6 +25,7 @@
         $dbname = "clinicaVeterinaria";
         $conn = new mysqli($servername, $username, $password,$dbname);
         if ($conn->connect_error) {      die("Connection failed: " . $conn->connect_error);      }
+        echo "<br><a href='../../templates/empleado.html'>Regresar</a><br>";
 
         $sql = "SELECT Nombres,Apellidos FROM Cliente WHERE ID ='".$_SESSION['idClient']. "'";
         $result = mysqli_query($conn, $sql);
@@ -59,7 +65,7 @@
           echo '<label>Costo:</label>';
           echo '<input type="number" name="cost">';
 
-          echo '<input type="submit" value="submit"></form>';
+          echo '<input type="submit" value="Enviar"></form>';
 
           $n = isset($_POST['name']);
           $d = isset($_POST['des']);
@@ -98,7 +104,6 @@
             }else{ echo "Verifica la entrada";}
                 }
         }
-        echo "<a href='../../templates/empleado.html'>Regresar</a>";
         $conn->close();
       }else{echo "Selecciona una mascota Primero";}
     }else{echo "Selecciona un cliente primero";}

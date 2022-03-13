@@ -1,14 +1,19 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-    
-        <link rel="icon" type="image/png" sizes="32x32" href="../statics/media/favicon/logo.png">
-        <title>Modificar procedimiento</title>
-    </head>
-    <body>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="../../statics/css/estiloMod.css">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../statics/media/favicon/logo.png">
+    <title>Modificar procedimiento</title>
+</head>
+
+<body>
+    <header>
         <h1>Modificar procedimiento</h1>
+    </header>
 <?php
 session_start();
 if(isset($_SESSION['id'])){
@@ -55,6 +60,8 @@ if(isset($_SESSION['id'])){
             
             $sql = "SELECT * FROM Procedimiento WHERE ID ='".$idPro. "'";
             $result = mysqli_query($conn, $sql);
+                      
+            echo "<form action='modProcedimiento.php' method='POST'><button name='terminar'>Terminar</button></form>";
             if($row = mysqli_fetch_array($result)){
                 echo "<h2> Se ha seleccionado el procedimiento ".$row[1];
                 $name=$row[1];
@@ -138,10 +145,7 @@ if(isset($_SESSION['id'])){
                                 header('Location: modMascota.php');
                             }
                         }
-            }
-            
-            echo "<form action='modProcedimiento.php' method='POST'><button name='terminar'>Terminar</button></form>";
-            
+            }          
         }else{
             if(isset($_SESSION['idPet'])){
                 $sql = "SELECT Nombre, Procedimiento FROM Mascota WHERE ID ='".$_SESSION['idPet']. "'";

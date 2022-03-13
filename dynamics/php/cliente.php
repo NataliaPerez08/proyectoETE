@@ -17,8 +17,8 @@
             $password = "";
             $dbname = "clinicaVeterinaria";
             $conn = new mysqli($servername, $username, $password,$dbname);
-            if ($conn->connect_error) { die("Connection failed: " . $conn->connect_error); }
             echo "<br><a href='../../templates/empleado.html'>Regresar</a><br><br>";
+            if ($conn->connect_error) { die("Connection failed: " . $conn->connect_error); }
             echo "<h1>Registro Cliente</h1>
             <form action='cliente.php' method='POST'>
             <label>Nombre(s):</label>
@@ -33,7 +33,7 @@
             <label>Telefono:</label>
             <input type='tel' name='telephone'>";
             
-            echo "<input type='submit' value='submit'>";
+            echo "<input type='submit' value='Enviar'>";
             echo  "</form>";
 
             // Registro Cliente

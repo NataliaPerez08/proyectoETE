@@ -8,13 +8,13 @@ function loginE() {
         $form = $("<form></form>", {action:"./dynamics/php/index.php", method:'POST',id:"form"});
         $loginDiv.append($form);
     
-        $form.append("Correo electronico");
+        $form.append("Correo electronico: <br>");
         $form.append('<input type="email" name="usr">');
     
-        $form.append("Contraseña")
+        $form.append("<br>Contraseña: <br>")
         $form.append('<input type="password" name="pass">');
     
-        $sendBtton = $('<input type="submit" value="submit">');
+        $sendBtton = $('<br><input type="submit" value="submit">');
         $form.append($sendBtton);
     }
 }
@@ -28,9 +28,9 @@ function loginC() {
         $content.append($loginDiv);
         $form = $("<form></form>", {action:"./dynamics/php/infoCliente.php", method:'POST',id:"form"});
         $loginDiv.append($form);
-        $form.append("Correo electronico:");
+        $form.append("Correo electronico: <br>");
         $form.append('<input type="email" name="email">');
-        $sendBtton = $('<input type="submit" value="submit">');
+        $sendBtton = $('<br><input type="submit" value="submit">');
         $form.append($sendBtton);
     }
 }

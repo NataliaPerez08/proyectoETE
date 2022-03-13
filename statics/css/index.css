@@ -36,8 +36,22 @@ html{
     padding: 14px 16px;
     text-decoration: none;
 }
+label{
+    padding: auto;
+    margin-top: 4%;
+    margin-bottom: 4em;
+    margin-left: 2em;
+    margin-right: 2em;
+}
+input,select,option {
+    width: 50%;
+    padding: 7px 15px;
+    margin: 8px 0;
+    box-sizing: border-box;
+  }
 
 #content {
+	align-content: center;
 	font-size: large;
 	font-family: 'Times New Roman', Times, serif;
 	text-justify: auto;
