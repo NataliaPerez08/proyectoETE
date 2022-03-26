@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 25-03-2022 a las 00:37:53
+-- Tiempo de generación: 26-03-2022 a las 02:47:18
 -- Versión del servidor: 10.4.22-MariaDB
 -- Versión de PHP: 8.1.2
 
@@ -36,13 +36,6 @@ CREATE TABLE `cliente` (
   `Mascotas` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Volcado de datos para la tabla `cliente`
---
-
-INSERT INTO `cliente` (`ID`, `Nombres`, `Apellidos`, `CorreoE`, `Telefono`, `Mascotas`) VALUES
-(7, 'Armando', 'Romero', 'arm@gmail.com', '565454545', '24,');
-
 -- --------------------------------------------------------
 
 --
@@ -59,15 +52,6 @@ CREATE TABLE `empleado` (
   `Contraseña` varchar(250) NOT NULL,
   `Puesto` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `empleado`
---
-
-INSERT INTO `empleado` (`ID`, `Nombres`, `Apellidos`, `CorreoE`, `Telefono`, `Salario`, `Contraseña`, `Puesto`) VALUES
-(7, 'Natalia', 'Rosas', 'a@gmail.com', '2222', 123, '$2y$10$WDjNEwQ4zSmhZJfAIfiptemTCzd9xcAth0tHvey2PQ55Uqx6IaeIu', 2),
-(9, 'Armando', 'Romero', 'hola@example.com', '55555555', 200.3, '$2y$10$jaCU6nTQvtHIkHVBfA6D9unSI1MYRMJsZa/jAeJrj4XFxXWY/fnBi', 1),
-(10, 'David', 'Perales', 'david@gmail.com', '5555555555', 2304.56, '$2y$10$Tpdc6AoM2cSznS6B16NncOZXQw2nmCmhoGrqDsCGa6U81dl1dCxRa', 1);
 
 -- --------------------------------------------------------
 
@@ -86,13 +70,6 @@ CREATE TABLE `mascota` (
   `Procedimiento` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Volcado de datos para la tabla `mascota`
---
-
-INSERT INTO `mascota` (`ID`, `Propietario`, `Nombre`, `Edad`, `Tipo`, `Veterinario`, `Diagnostico`, `Procedimiento`) VALUES
-(24, 7, 'Atila', 13, 'Perro', 9, 'Blancura', '28,');
-
 -- --------------------------------------------------------
 
 --
@@ -107,15 +84,6 @@ CREATE TABLE `procedimiento` (
   `Costo` decimal(10,0) DEFAULT NULL,
   `Paciente` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `procedimiento`
---
-
-INSERT INTO `procedimiento` (`ID`, `Nombre`, `Descripcion`, `Fecha`, `Costo`, `Paciente`) VALUES
-(26, 'Consulta', 'Revisión', '2022-03-09', '1234', 22),
-(27, 'Estetica', 'Corte', '2022-03-10', '123', 22),
-(28, 'Consulta', 'Revisión', '2022-03-12', '185', 24);
 
 -- --------------------------------------------------------
 
@@ -179,7 +147,7 @@ ALTER TABLE `puesto`
 -- AUTO_INCREMENT de la tabla `cliente`
 --
 ALTER TABLE `cliente`
-  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `empleado`
